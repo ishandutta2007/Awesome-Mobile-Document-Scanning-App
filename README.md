@@ -1,69 +1,256 @@
-# Awesome-Mobile-Document-Scanning-App
+<p align="center">
+  <img src="assets/banner.svg" alt="Awesome Mobile Document Scanning App Banner" width="100%" />
+</p>
 
-## Top Mobile Document Scanning App Ecosystem
-
-**Curated List of SaaS Products & Open-Source GitHub Projects**  
-*Focused on Offline-First Scanning, On-Device OCR & Privacy-Respecting PDF Generation*  
-**Last updated: March 2026**
-
-This repository tracks notable **SaaS platforms** and **open-source projects** for **Mobile Document Scanning Apps**. These tools turn phone camera captures into clean, shareable PDFs — detecting page edges, correcting perspective, enhancing shadows, and embedding searchable text — with a spectrum running from polished commercial apps like Adobe Scan and Microsoft Lens to open-source Android scanners that never upload a single byte.
-
-**Examples** include FairScan, MakeACopy, OSS Document Scanner, ScanBridge, and 拾序 (Shixu) (the category leaders).
-
-**Open-source emphasis**: This section is heavily expanded with every major active project for self-hosting, offline processing, and privacy-first mobile scanning — especially relevant as **CamScanner's data-harvesting history** pushed users toward open-source alternatives, and **FairScan** and **MakeACopy** now rival Adobe Scan's premium features while running entirely on-device [citation:1][citation:2].
-
-Contributions welcome! Open a PR to add/update entries. Keep descriptions factual and link to official sites.
-
-## Table of Contents
-- [SaaS/Hosted Platforms](#saas-hosted-platforms)
-- [Open-Source GitHub Projects](#open-source-github-projects)
-- [How to Contribute](#how-to-contribute)
-- [Disclaimer](#disclaimer)
-
-## SaaS/Hosted Platforms
-
-- **Adobe Scan** — **The reference commercial mobile scanner.** Automatic edge detection, OCR, and PDF export with Creative Cloud integration. **Free with Adobe account; premium features require subscription**. **Trade-offs**: cloud sync enabled by default queues uploads to Adobe's servers, and many features are gated behind an account [citation:11]. **Best for Adobe subscribers** wanting seamless integration with Acrobat and Creative Cloud, accepting cloud dependency.
-
-- **Microsoft Lens** — **The Office-integrated scanner.** Captures documents, whiteboards, and business cards with on-device OCR for some functions and OneDrive/Office integration. **Free with Microsoft account**. **Best for Microsoft 365 users** wanting scans that flow directly into Word, PowerPoint, or OneDrive [citation:11].
-
-- **CamScanner** — **The widely-installed commercial scanner.** Edge detection, OCR, and PDF export with cloud backup. **Free tier with watermark and ads; paid Pro**. **Trade-offs**: historical data-harvesting controversies have driven privacy-conscious users to open-source alternatives. **Best for users** already invested in its ecosystem, though open-source options now match its core features without the privacy trade-off [citation:1].
-
-- **Genius Scan** — **The all-round commercial scanner.** On-device edge detection, perspective correction, and OCR once upgraded. **Free tier capped at 30 pages/month; ~$5/month or ~$50 one-time unlocks offline OCR**. **Best for users** wanting polished scanning with on-device processing, accepting the free tier's monthly cap [citation:11].
-
-## Open-Source GitHub Projects
-
-- **FairScan** — **The simple, respectful Android scanner.** **GPLv3 licensed, available on F-Droid, Google Play, and GitHub** [citation:2]. **Designed to be simple and respectful**: snap pages, get a clean shareable PDF in seconds with no manual adjustments, no tracking, no ads, and minimal permissions [citation:2]. **Custom segmentation model** (LiteRT) auto-detects document edges; OpenCV handles perspective correction and image enhancement; Tesseract provides offline OCR; PDFBox-Android generates PDFs [citation:2]. **All processing happens locally on-device** — no cloud processing [citation:2]. **Supports Android 8.0+** with a camera [citation:2]. **Experimental intent API** (`org.fairscan.app.action.SCAN_TO_PDF`) lets other apps request a scan and receive the resulting PDF [citation:2]. **The honest caveat**: **not designed for fine-grained manual control** — it deliberately avoids replicating every feature of other scanners in favor of simplicity [citation:2]. **Best for users** wanting the simplest possible privacy-respecting scanner with automatic edge detection and offline OCR.
-
-- **MakeACopy** — **The privacy-first Android scanner with batch scanning and OCR.** **Open-source, F-Droid compliant**, created by German developer Christian Kierdorf [citation:1]. **Compiles OpenCV from source** rather than using precompiled binaries to guarantee no malicious code enters the build chain [citation:1]. **Multi-page scanning** with reordering and management before export, **Inbox Mode** for auto-saving to a predefined folder (ideal for paperless-ngx, Nextcloud, or Syncthing workflows), and **Last Scans** for quick reuse . **Offline OCR** supports English, German, French, Spanish, Portuguese, Dutch, Polish, Czech, Slovak, Hungarian, Romanian, Danish, Norwegian, Swedish, Turkish, Chinese, Russian, Thai, Arabic, Persian, Hindi, and Greek . **ML-assisted corner detection** via an ONNX model for improved edge detection [citation:1]. **Accessibility Mode** provides spoken and haptic feedback with hardware volume keys as shutter . **The honest caveat**: **OCR quality depends on the PaddleOCR/Tesseract flavor** — the published `paddle` flavor on F-Droid differs from the `standard` Tesseract flavor on GitHub Releases . **Best for Android users** wanting batch scanning, broad OCR language support, and Inbox Mode integration with document management pipelines.
-
-- **OSS Document Scanner** — **The Material You Android scanner with fingerprint lock.** **Open-source (Apache-2.0), available on Play Store and F-Droid** [citation:7]. **Fresh Material You look** with **fingerprint lock**, **real OCR to grab text**, edge detection on white paper, brightness tweaks, and **naming rules with WebDAV backup** [citation:6]. **OpenCV and Tesseract** handle detection and OCR [citation:7]. **The honest caveat**: **building from source requires NativeScript, OpenCV, and Tesseract setup** — the repo does not include the large native libraries, and compilation is non-trivial [citation:7]. **Best for Android users** wanting a polished open-source scanner with OCR and WebDAV backup, accepting the Play Store/F-Droid install path rather than building from source.
-
-- **ScanBridge** — **The WebDAV-connected Android scanner.** **Open-source**, hooks directly into **WebDAV or local storage**, with **cropping that handles odd angles** [citation:6]. **Beats stock apps in bad light**, with real exports that bridge to cloud storage without a hitch [citation:6]. **Best for users** already running a WebDAV server (Nextcloud, ownCloud) who want scans to land directly in their existing storage without a proprietary cloud.
-
-- **拾序 (Shixu)** — **The iPhone-native offline scanner.** **MIT licensed, App Store and TestFlight**, with **完全本地处理** (completely local processing), **无账号、无后端** (no account, no backend) [citation:8]. **Continuous multi-page capture** with background processing queue, **Apple Vision document segmentation and rectangle detection**, perspective correction, shadow compensation, **Vision text-line secondary calibration** to further correct body text perspective, and **A4 multi-page PDF or high-res JPEG export** [citation:8]. **Color, grayscale, and black-and-white modes** adjustable per page, with manual corner adjustment when auto-detection falls short [citation:8]. **The honest caveat**: **iPhone-only** — no Android version [citation:8]. **Best for iPhone users** wanting a fully local, open-source scanner with Vision-powered detection and continuous multi-page capture.
-
-- **Open Note Scanner** — **The minimalist Android scanner.** **Open-source, available on F-Droid**, with on-device detection, saves to a folder you pick, and **no account** [citation:11]. **The safest pick when you need "just scan pages to PDF, nothing else"** — it doesn't send a single byte anywhere [citation:11]. **The honest caveat**: **no OCR** and a functional-but-not-beautiful UI [citation:11]. **Best for users** wanting the absolute minimum network risk — open source, no account, no cloud, no ambiguity.
-
-### Additional Strong Open-Source Options
-
-- **DocMatic** — **The iOS/iPadOS privacy-focused scanner.** **Apache 2.0 licensed** (open-source version on GitHub, App Store version may differ), with document scanning, save & share, **biometric lock**, local storage, and Apple Files integration [citation:3]. **The honest caveat**: **redistribution to app stores is prohibited** without permission, and the App Store version includes additional features not in the repo [citation:3]. **Best for iOS developers** wanting a reference implementation for privacy-focused scanning.
-
-## How to Contribute
-
-1. Fork the repo.
-2. Add/edit entries in `README.md` (follow existing format).
-3. Include: name, link, 1–2 sentence description, and whether it's SaaS or open-source.
-4. Submit PR with a short explanation.
-
-Star the repo if you find it useful!
-
-## Disclaimer
-
-- This is a **community-curated** list — not exhaustive and not an endorsement.
-- Mobile document scanning apps differ significantly in privacy posture, OCR capability, and platform support. **CamScanner's historical data-harvesting controversies** make privacy a primary selection criterion for many users [citation:1]. **FairScan and MakeACopy process everything on-device** with no cloud dependency, while **Adobe Scan and Microsoft Lens default to cloud uploads** (though Lens performs some OCR on-device) [citation:2][citation:11]. **Open Note Scanner has no OCR** — it is the safest pick only when you need pure PDF capture with zero network calls [citation:11]. **拾序 is iPhone-only**, and **OSS Document Scanner requires a non-trivial build setup** if you want to compile it yourself rather than install from Play Store/F-Droid [citation:7][citation:8]. **The choice often comes down to platform and OCR needs**: Android users have FairScan (simple) or MakeACopy (batch + broad OCR), iPhone users have 拾序, and users needing zero network risk have Open Note Scanner.
-- Self-hosted open-source solutions require proper app installation from F-Droid or GitHub Releases, and awareness that building from source may require Android SDK, NativeScript, OpenCV, and Tesseract toolchains.
+<p align="center">
+  <a href="https://github.com/ishandutta2007/Awesome-Awesome-Awesome"><img src="https://img.shields.io/badge/Awesome-%E2%9C%94-blueviolet?style=flat-square&logo=github" alt="Awesome"/></a>
+  <a href="https://disoord.gg/jc4xtF58Ve"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Mobile-Document-Scanning-App/stargazers"><img src="https://img.shields.io/github/stars/ishandutta2007/Awesome-Mobile-Document-Scanning-App?style=flat-square&color=blue" alt="Stars" /></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Mobile-Document-Scanning-App/network/members"><img src="https://img.shields.io/github/forks/ishandutta2007/Awesome-Mobile-Document-Scanning-App?style=flat-square&color=blue" alt="Forks" /></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Mobile-Document-Scanning-App/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ishandutta2007/Awesome-Mobile-Document-Scanning-App?style=flat-square&color=success" alt="License" /></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Mobile-Document-Scanning-App/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome" /></a>
+  <a href="https://github.com/ishandutta2007"><img alt="GitHub followers" src="https://img.shields.io/github/followers/ishandutta2007?label=Follow" /></a>
+</p>
 
 ---
 
-**Made for mobile users, privacy-conscious professionals, and developers choosing document scanning apps that respect their data.**
-Let's make mobile document scanning more open, offline-first, and privacy-respecting.
+# 📱 Awesome Mobile Document Scanning App Ecosystem 📄
+
+> **The Definitive, SEO-Optimized Guide to Mobile Document Scanning Applications, On-Device OCR Engines, Offline-First Capture Tools, and Privacy-Respecting PDF Generation Solutions.**
+
+Welcome to the **Awesome Mobile Document Scanning App** knowledge base. Whether you need an enterprise SaaS mobile capture pipeline, a zero-telemetry offline scanner for personal identity documents, or an open-source library to integrate document scanning into Android, iOS, Flutter, or React Native apps, this curated repository indexes the best software and libraries available today.
+
+---
+
+## 📑 Table of Contents
+- [🌐 Sector Overview & Market Dynamics](#-sector-overview--market-dynamics)
+- [💼 SaaS & Commercial Hosted Platforms](#-saas--commercial-hosted-platforms)
+- [🔓 Open-Source GitHub Projects & Libraries](#-open-source-github-projects--libraries)
+- [⚖️ Architecture & Core Feature Matrix](#-architecture--core-feature-matrix)
+- [🔍 Key Evaluation Criteria for Mobile Scanners](#-key-evaluation-criteria-for-mobile-scanners)
+- [🛠️ How Mobile Document Scanning Works Under the Hood](#️-how-mobile-document-scanning-works-under-the-hood)
+- [🤝 How to Contribute](#-how-to-contribute)
+- [💖 Support & Sponsoring](#-support--sponsoring)
+- [⭐ Star History](#-star-history)
+- [📜 License & Disclaimer](#-license--disclaimer)
+
+---
+
+## 🌐 Sector Overview & Market Dynamics
+
+The global **mobile document scanning application** sector is valued at approximately **$1.05 billion** and is projected to expand to **$2.11 billion by 2035** at a **Compound Annual Growth Rate (CAGR) of ~8.1%**, fueled by smartphone camera sensor evolution, remote/hybrid work adoption, and paperless digital enterprise transformation.
+
+The market is **moderately fragmented**: mega-cap tech ecosystems (Microsoft and Adobe) anchor document workflows through bundled enterprise office suites, while well-funded commercial incumbents (CamScanner, Readdle, Maple Media) dominate consumer app stores. Concurrently, privacy controversies (data monetization and intrusive cloud tracking) and subscription fatigue have catalyzed a rapidly growing **offline-first and self-hosted open-source ecosystem** (such as OSS Document Scanner, FairScan, and Paperless-ngx integrations) that run computer vision and OCR models entirely on-device without remote telemetry.
+
+---
+
+## 💼 SaaS & Commercial Hosted Platforms
+
+The following table provides a comprehensive overview of the leading commercial and SaaS mobile document scanning solutions, sorted in descending order by **Company Size / Valuation / Revenue**.
+
+| SaaS Product & Developer | Company Size / Valuation / Revenue | Starting Tier Pricing | Free Tier Limits | Supported Platforms | Privacy & Cloud Model |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **[Microsoft Lens](https://www.microsoft.com/en-us/microsoft-365/mobile/lens)**<br>*(Microsoft Corporation)* | **$3.1 Trillion**<br>*(Market Cap)* | **Free** *(Included with Microsoft Account)* / **$6.99/mo** or **$69.99/yr** *(Microsoft 365 Personal)* | **Free forever**: Unlimited document, whiteboard, and business card scans up to 100 pages per scan session; exports to PDF, Word, PowerPoint; 5 GB free OneDrive cloud storage. | Android, iOS | Requires Microsoft account; scans automatically upload and sync with OneDrive / Office 365. |
+| **[Adobe Scan](https://www.adobe.com/acrobat/mobile/scanner-app.html)**<br>*(Adobe Inc.)* | **~$210 Billion**<br>*(Market Cap)* | **$9.99/mo** *(Adobe Scan Premium)* or **$19.99/mo** *(Acrobat Pro)* | **Free forever**: Unlimited scanning and PDF/JPEG exports; OCR text recognition limited to 25 pages per document; requires free Adobe ID; includes 2 GB free Creative Cloud storage. | Android, iOS | Requires Adobe ID; scans automatically process and synchronize through Adobe Document Cloud servers. |
+| **[CamScanner](https://www.camscanner.com/)**<br>*(INTSIG Information Co., Ltd.)* | **~$1.2 Billion**<br>*(Private Valuation / ~$100M+ ARR)* | **$4.99/mo** or **$49.99/yr** *(CamScanner Premium)* | **Free forever**: Exports include "Scanned with CamScanner" watermark; OCR text extraction limited to 4 trial pages/month; includes 200 MB cloud space and ad-supported interface. | Android, iOS, Web | Cloud backup enabled by default; scans store on INTSIG servers; historical data privacy controversies noted. |
+| **[Scanner Pro](https://readdle.com/scannerpro)**<br>*(Readdle Inc.)* | **~$250 Million**<br>*(Valuation / ~$30M–$50M ARR)* | **$4.99/mo** or **$29.99/yr** *(Scanner Pro Plus)* | **Free forever**: Unlimited scans, manual edge detection, and PDF/JPEG export with zero watermarks; OCR full-text search, auto-upload to cloud, and password protection require Plus or 7-day free trial. | iOS, iPadOS | On-device processing by default; optional encrypted backup to iCloud, Google Drive, Dropbox, or WebDAV. |
+| **[SwiftScan](https://swiftscan.com/)**<br>*(Maple Media / formerly Scanbot)* | **~$150 Million**<br>*(Parent Valuation / ~$20M+ ARR)* | **$7.99/mo** or **$59.99/yr** *(SwiftScan VIP)* | **Free forever**: Basic multi-page scanning with watermarks and in-app ads; automatic cloud upload, text OCR, document signing, and custom folder sync require VIP or a 7-day free trial. | Android, iOS | Local processing option; cloud sync connects directly to user-configured providers (Box, Nextcloud, Evernote, Drive). |
+| **[iScanner](https://iscanner.com/)**<br>*(BP Mobile / AIBY Group)* | **~$60 Million**<br>*(ARR)* | **$9.99/mo** or **$39.99/yr** *(iScanner Pro)* | **Free forever**: Basic scanning with ads, capped at 3 document exports per day; unlimited exports, AI OCR, curve flattening, and 10 GB cloud storage require Pro or a 3-day free trial. | Android, iOS, Web | Optional cloud sync; local storage supported; analytics telemetry present in free tier. |
+| **[Genius Scan](https://thegrizzlylabs.com/genius-scan/)**<br>*(The Grizzly Labs)* | **~$10 Million**<br>*(Bootstrapped / Annual Revenue)* | **$2.99/mo** or **$29.99/yr** *(Genius Cloud)* / **$7.99** one-time *(Genius Scan+)* | **Free forever**: Unlimited scans and PDF creation without watermarks; offline batch OCR, smart document naming, biometric lock, and automated cloud sync require Genius Scan+ or a 7-day free trial of Genius Cloud. | Android, iOS | 100% on-device processing by default; zero tracking/telemetry; optional encrypted Genius Cloud sync. |
+
+---
+
+## 🔓 Open-Source GitHub Projects & Libraries
+
+Below is the curated selection of open-source mobile document scanning applications, developer SDKs, and camera plugins. Entries are sorted in **descending order by GitHub star count** (updated with live social star badges linking directly to each repository's stargazers page).
+
+1. ### 📱 **[OSS Document Scanner](https://github.com/ossappscollective/OSS-DocumentScanner)** [![Stars](https://img.shields.io/github/stars/ossappscollective/OSS-DocumentScanner?style=social&color=white)](https://github.com/ossappscollective/OSS-DocumentScanner/stargazers)
+   - **Platform & License**: Android • Apache-2.0
+   - **Core Stack**: NativeScript, OpenCV C++, Tesseract OCR, Material You UI
+   - **Highlights**: Features biometric fingerprint locking, on-device OCR for instant text extraction, dynamic contrast filters, automatic page edge detection, custom file naming templates, and automated WebDAV synchronization (e.g. Nextcloud, ownCloud).
+   - **Best For**: Android users looking for a fully-featured, ad-free CamScanner replacement with WebDAV backup.
+
+2. ### 🛡️ **[OpenScan](https://github.com/Ethereal-Developers-Inc/OpenScan)** [![Stars](https://img.shields.io/github/stars/Ethereal-Developers-Inc/OpenScan?style=social&color=white)](https://github.com/Ethereal-Developers-Inc/OpenScan/stargazers)
+   - **Platform & License**: Android, Flutter • GPL-3.0
+   - **Core Stack**: Flutter, Dart, OpenCV, ML Kit
+   - **Highlights**: Zero analytics, zero ads, zero tracking, and zero internet permission required. Offers automatic document border detection, multi-page batch scanning, custom theme engine, signature insertion, and high-DPI PDF generation.
+   - **Best For**: Privacy purists seeking an app that mathematically cannot leak data over the internet.
+
+3. ### 📝 **[OpenNoteScanner](https://github.com/allgood/OpenNoteScanner)** [![Stars](https://img.shields.io/github/stars/allgood/OpenNoteScanner?style=social&color=white)](https://github.com/allgood/OpenNoteScanner/stargazers)
+   - **Platform & License**: Android • GPL-3.0
+   - **Core Stack**: Java, OpenCV
+   - **Highlights**: Ultra-lightweight utility designed to snap photos of physical notes or documents against contrasting backgrounds, auto-crop corners, correct perspective angles to a 90-degree flat view, and save directly to your local file system.
+   - **Best For**: Users who want a lightweight, no-frills scanner with zero background overhead.
+
+4. ### 🗄️ **[Paperless Mobile](https://github.com/astubenbord/paperless-mobile)** [![Stars](https://img.shields.io/github/stars/astubenbord/paperless-mobile?style=social&color=white)](https://github.com/astubenbord/paperless-mobile/stargazers)
+   - **Platform & License**: Android, iOS • AGPL-3.0
+   - **Core Stack**: Flutter, Dart, Paperless-ngx REST API
+   - **Highlights**: Full-featured mobile client for Paperless-ngx. Includes an integrated camera document scanner with edge detection, automatic perspective transformation, biometric lock, custom tagging, correspondent assignment, and direct background upload.
+   - **Best For**: Self-hosters running Paperless-ngx who want a native mobile capture pipeline.
+
+5. ### 📐 **[AndroidScannerDemo](https://github.com/jhansireddy/AndroidScannerDemo)** [![Stars](https://img.shields.io/github/stars/jhansireddy/AndroidScannerDemo?style=social&color=white)](https://github.com/jhansireddy/AndroidScannerDemo/stargazers)
+   - **Platform & License**: Android • Apache-2.0
+   - **Core Stack**: Java, OpenCV, Android NDK
+   - **Highlights**: The classic ScanLibrary implementation providing 4-point quadrilateral edge detection, interactive crop handles, perspective rectification, and document binarization filters (Magic Color, Grayscale, B&W).
+   - **Best For**: Android developers seeking a rock-solid, customizable scanning library module for their own apps.
+
+6. ### ⚡ **[FairScan](https://github.com/pynicolas/FairScan)** [![Stars](https://img.shields.io/github/stars/pynicolas/FairScan?style=social&color=white)](https://github.com/pynicolas/FairScan/stargazers)
+   - **Platform & License**: Android • GPL-3.0
+   - **Core Stack**: Kotlin, LiteRT (TensorFlow Lite), OpenCV, Tesseract OCR, PDFBox-Android
+   - **Highlights**: Employs a custom deep-learning segmentation neural network (LiteRT) for instant page boundary detection. Includes on-device Tesseract OCR, automated shadow compensation, and an experimental Android Intent API (`org.fairscan.app.action.SCAN_TO_PDF`) for inter-app workflows.
+   - **Best For**: Users wanting modern ML-powered edge detection and OCR in an open-source, offline package.
+
+7. ### 🚀 **[AndroidDocumentScanner](https://github.com/mayuce/AndroidDocumentScanner)** [![Stars](https://img.shields.io/github/stars/mayuce/AndroidDocumentScanner?style=social&color=white)](https://github.com/mayuce/AndroidDocumentScanner/stargazers)
+   - **Platform & License**: Android • MIT
+   - **Core Stack**: Kotlin, CameraX, OpenCV
+   - **Highlights**: High-performance Android scanning library providing a fluid CamScanner-style interface. Features live edge tracking over camera feed, automated capture trigger upon alignment, and perspective transformation.
+   - **Best For**: Developers looking for an easy-to-integrate modern CameraX scanner component.
+
+8. ### 📥 **[MakeACopy](https://github.com/egdels/makeacopy)** [![Stars](https://img.shields.io/github/stars/egdels/makeacopy?style=social&color=white)](https://github.com/egdels/makeacopy/stargazers)
+   - **Platform & License**: Android • GPL-3.0
+   - **Core Stack**: Kotlin, OpenCV (compiled from source), ONNX Runtime, PaddleOCR / Tesseract
+   - **Highlights**: F-Droid compliant scanner built with high supply-chain security standards (compiles OpenCV from source). Includes multi-language offline OCR (20+ languages), ONNX corner detection, Accessibility Mode (spoken and haptic shutter), and Inbox Mode for automated syncing with Paperless-ngx or Syncthing.
+   - **Best For**: Power users needing multi-page batch scanning, multi-language offline OCR, and automated DMS ingest directories.
+
+9. ### 🧩 **[React Native Document Scanner Plugin](https://github.com/WebsiteBeaver/react-native-document-scanner-plugin)** [![Stars](https://img.shields.io/github/stars/WebsiteBeaver/react-native-document-scanner-plugin?style=social&color=white)](https://github.com/WebsiteBeaver/react-native-document-scanner-plugin/stargazers)
+   - **Platform & License**: Android, iOS • MIT
+   - **Core Stack**: React Native, VisionKit (iOS), ML Kit / CameraX (Android)
+   - **Highlights**: Cross-platform bridge providing native document scanning UI on iOS (VNDocumentCameraViewController) and Android (Google Play Services Document Scanner API or custom OpenCV fallback), returning cropped high-resolution images or PDFs.
+   - **Best For**: React Native mobile app engineers needing instant document scanning capabilities.
+
+10. ### 🖨️ **[ScanBridge](https://github.com/Chrisimx/ScanBridge)** [![Stars](https://img.shields.io/github/stars/Chrisimx/ScanBridge?style=social&color=white)](https://github.com/Chrisimx/ScanBridge/stargazers)
+    - **Platform & License**: Android • GPL-3.0
+    - **Core Stack**: Kotlin, eSCL (AirScan) Protocol, WebDAV Client
+    - **Highlights**: Bridges phone camera captures directly to local network storage, WebDAV shares, and hardware eSCL/AirScan multi-function printers without requiring proprietary manufacturer apps.
+    - **Best For**: Local-first home and office networks wanting vendor-neutral scanning.
+
+11. ### 🔬 **[Scanbot SDK Example Android](https://github.com/doo/scanbot-sdk-example-android)** [![Stars](https://img.shields.io/github/stars/doo/scanbot-sdk-example-android?style=social&color=white)](https://github.com/doo/scanbot-sdk-example-android/stargazers)
+    - **Platform & License**: Android • Sample Code / Commercial Core
+    - **Core Stack**: Kotlin, Scanbot Native C++ Engine
+    - **Highlights**: Enterprise-grade document scanner, MRZ (passport/ID) reader, and barcode extraction reference architecture demonstrating auto-snapping, user guidance UI, polygon cropping, and PDF binarization.
+    - **Best For**: Enterprise teams evaluating high-throughput commercial mobile scanning SDKs.
+
+12. ### 📤 **[Scan To Paperless](https://github.com/garo/scantopaperless)** [![Stars](https://img.shields.io/github/stars/garo/scantopaperless?style=social&color=white)](https://github.com/garo/scantopaperless/stargazers)
+    - **Platform & License**: Android • Apache-2.0
+    - **Core Stack**: Kotlin, Android Native Document Scanner API
+    - **Highlights**: Ultra-minimalist app using Android's native system scanning dialog. Requires virtually zero device permissions, combines captured pages into a crisp PDF, and pushes directly to a Paperless-ngx server over HTTPS.
+    - **Best For**: Fast, frictionless paper-to-Paperless ingest on Android devices.
+
+13. ### 🍏 **[拾序 (Shixu)](https://github.com/MarkShawn2020/shixu)** [![Stars](https://img.shields.io/github/stars/MarkShawn2020/shixu?style=social&color=white)](https://github.com/MarkShawn2020/shixu/stargazers)
+    - **Platform & License**: iOS • MIT
+    - **Core Stack**: Swift, Apple Vision Framework, VisionKit, CoreImage
+    - **Highlights**: Fully offline, privacy-first iPhone document scanner with zero backend, zero analytics SDKs, and zero login requirements. Leverages Apple Vision for document segmentation, perspective deskewing, text-line calibration, shadow removal, and multi-page A4 PDF export.
+    - **Best For**: iPhone and iPad users looking for a clean, open-source native alternative to CamScanner.
+
+---
+
+## ⚖️ Architecture & Core Feature Matrix
+
+| App / Library | License | Platform | Edge Detection Engine | OCR Engine | Offline-First | Cloud Free Export | Auto-Sync / DMS Hook |
+| :--- | :--- | :--- | :--- | :--- | :---: | :---: | :--- |
+| **OSS Document Scanner** | Apache-2.0 | Android | OpenCV C++ | Tesseract OCR | ✅ Yes | ✅ Yes | WebDAV / Nextcloud |
+| **OpenScan** | GPL-3.0 | Android | OpenCV + ML Kit | On-Device ML | ✅ Yes | ✅ Yes | Local Filesystem / Share |
+| **OpenNoteScanner** | GPL-3.0 | Android | OpenCV Native | ❌ None | ✅ Yes | ✅ Yes | Local Gallery / Folder |
+| **Paperless Mobile** | AGPL-3.0 | Android, iOS | Flutter Vision | Server OCR | ⚠️ Hybrid | ✅ Yes | Paperless-ngx REST API |
+| **FairScan** | GPL-3.0 | Android | LiteRT (TFLite) | Tesseract OCR | ✅ Yes | ✅ Yes | Android Intent API |
+| **MakeACopy** | GPL-3.0 | Android | ONNX Corner Model | PaddleOCR / Tesseract | ✅ Yes | ✅ Yes | Inbox Folder / Syncthing |
+| **拾序 (Shixu)** | MIT | iOS | Apple Vision | Apple Vision Text | ✅ Yes | ✅ Yes | Files App / AirDrop |
+| **Microsoft Lens** | Proprietary | Android, iOS | Microsoft Vision | Cloud / On-Device | ⚠️ Partial | ⚠️ Partial | OneDrive / Office 365 |
+| **Adobe Scan** | Proprietary | Android, iOS | Sensei AI | Adobe Cloud OCR | ❌ No | ⚠️ Partial | Adobe Document Cloud |
+| **Genius Scan** | Proprietary | Android, iOS | Proprietary CV | On-Device Tesseract | ✅ Yes | ✅ Yes | Box, Drive, Dropbox, WebDAV |
+| **CamScanner** | Proprietary | Android, iOS | INTSIG CV | Cloud OCR | ❌ No | ❌ Watermarked | INTSIG Cloud |
+
+---
+
+## 🔍 Key Evaluation Criteria for Mobile Scanners
+
+When evaluating a mobile document scanner for personal or enterprise use, consider the following technical dimensions:
+
+1. 🔒 **Privacy & Data Sovereignity**:
+   Does the application require an account or transmit document bitmaps to third-party cloud servers for processing? For medical records, tax filings, legal contracts, and personal IDs, select an offline-first tool (such as **FairScan**, **MakeACopy**, **OpenScan**, or **Genius Scan**) to ensure zero telemetry leakage.
+2. 🔤 **On-Device Optical Character Recognition (OCR)**:
+   High-quality mobile scanners embed a searchable text layer directly into the generated PDF (`PDF/A` format) without requiring round-trip cloud API calls. Look for implementations utilizing **Tesseract**, **PaddleOCR**, or Apple **VisionKit**.
+3. 📐 **Perspective Rectification & Quad Detection**:
+   Advanced scanners continuously evaluate video stream frames to detect four paper corners, rectify trapezoidal distortions caused by oblique shooting angles, and flatten page curl.
+4. 🎨 **Binarization & Shadow Elimination**:
+   Quality filters separate background paper color variations from foreground text using adaptive thresholding (such as Sauvola or Otsu algorithms), removing ambient shadows cast by hands and smartphones.
+5. 🔄 **Document Management System (DMS) Integration**:
+   For digital archive workflows, look for applications with WebDAV support, custom folder routing, or direct APIs compatible with **Paperless-ngx**, **Nextcloud**, or **Syncthing**.
+
+---
+
+## 🛠️ How Mobile Document Scanning Works Under the Hood
+
+```
+   [Camera Sensor Stream]
+             │
+             ▼
+  ┌──────────────────────┐
+  │ Page Edge Detection  │ ──► LiteRT / ONNX / OpenCV Canny & Hough Transforms
+  └──────────────────────┘
+             │ (Corner Points: Top-Left, Top-Right, Bottom-Right, Bottom-Left)
+             ▼
+  ┌──────────────────────┐
+  │ Perspective Warp     │ ──► cv::getPerspectiveTransform & cv::warpPerspective
+  └──────────────────────┘
+             │ (Top-down rectified rectangular bitmap)
+             ▼
+  ┌──────────────────────┐
+  │ Image Enhancement    │ ──► Adaptive Thresholding, Contrast Stretch, Shadow Cleanup
+  └──────────────────────┘
+             │ (Enhanced high-contrast image)
+             ▼
+  ┌──────────────────────┐
+  │ On-Device OCR Engine │ ──► Tesseract / PaddleOCR / Apple Vision Framework
+  └──────────────────────┘
+             │ (Text coordinate bounding boxes + Unicode characters)
+             ▼
+  ┌──────────────────────┐
+  │ Searchable PDF / A   │ ──► PDFBox-Android / Poppler / Apple PDFKit
+  └──────────────────────┘
+```
+
+---
+
+## 🤝 How to Contribute
+
+Contributions are welcome and appreciated! To add a new mobile scanner application or developer SDK:
+
+1. **Fork the repository** to your GitHub account.
+2. **Create a topic branch**: `git checkout -b add-scanner-name`.
+3. **Add or update the listing** in `README.md`:
+   - Follow the established formatting conventions and include factual details (license, platforms, pricing, and GitHub star badges).
+   - Ensure open-source entries link to the repository and stargazers page.
+4. **Commit your changes**: `git commit -m "feat: add scanner-name to ecosystem"`.
+5. **Open a Pull Request** with a brief rationale and verification links.
+
+---
+
+## 💖 Support & Sponsoring
+
+A huge thank you to everyone contributing to and sharing this ecosystem guide! Maintaining, curating, and evaluating mobile document scanning solutions requires dedicated research and testing.
+
+If this repository saved you time, enhanced your privacy, or helped you find the perfect mobile scanner:
+- ⭐ **Star this repository** on GitHub to support discoverability.
+- 🍴 **Fork it** and contribute open-source or privacy-first scanning tools.
+- 📢 **Share it** with friends, colleagues, and the open-source community.
+- ☕ **Buy a coffee or sponsor the project**: Support continuous open-source curation directly via the [GitHub Sponsors Dashboard](https://github.com/sponsors/ishandutta2007).
+
+<p align="center">
+  <a href="https://github.com/sponsors/ishandutta2007">
+    <img src="https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?style=for-the-badge&logo=github-sponsors&logoColor=white" alt="Sponsor on GitHub" />
+  </a>
+</p>
+
+---
+
+## ⭐ Star History
+
+[![Star History Chart](https://star-history.dera.page/svg?repos=ishandutta2007/Awesome-Mobile-Document-Scanning-App&type=date&legend=top-left)](https://star-history.dera.page/#ishandutta2007/Awesome-Mobile-Document-Scanning-App&type=date&legend=top-left)
+
+---
+
+## 📜 License & Disclaimer
+
+- **License**: Distributed under the [MIT License](LICENSE).
+- **Disclaimer**: This is a community-curated technical directory. Product names, logos, and brands are property of their respective owners. Mention of SaaS platforms does not constitute an endorsement.

@@ -1,0 +1,206 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d"/>
+      <stop offset="40%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+
+    <!-- Scanner Glow Gradient -->
+    <linearGradient id="laserGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0"/>
+      <stop offset="20%" stop-color="#06b6d4" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="1"/>
+      <stop offset="80%" stop-color="#06b6d4" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Scan Beam Area Gradient -->
+    <linearGradient id="beamAreaGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Accent Gradient for Badges -->
+    <linearGradient id="cyanIndigo" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+
+    <!-- Ambient Glow Filters -->
+    <filter id="laserGlow" x="-20%" y="-50%" width="140%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="30" result="blur"/>
+    </filter>
+
+    <!-- Pattern Grid -->
+    <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.8" stroke-opacity="0.6"/>
+      <circle cx="40" cy="40" r="1" fill="#38bdf8" fill-opacity="0.3"/>
+    </pattern>
+
+    <style>
+      @keyframes scanMotion {
+        0% { transform: translateY(0px); opacity: 0.3; }
+        25% { opacity: 0.95; }
+        50% { transform: translateY(140px); opacity: 0.3; }
+        75% { opacity: 0.95; }
+        100% { transform: translateY(0px); opacity: 0.3; }
+      }
+
+      @keyframes pulseGlow {
+        0%, 100% { opacity: 0.35; }
+        50% { opacity: 0.75; }
+      }
+
+      @keyframes reticleFloat {
+        0%, 100% { stroke-opacity: 0.6; }
+        50% { stroke-opacity: 1; stroke-width: 2.5; }
+      }
+
+      @keyframes textGleam {
+        0%, 100% { stop-color: #38bdf8; }
+        50% { stop-color: #818cf8; }
+      }
+
+      .scanner-beam-group {
+        animation: scanMotion 4.5s ease-in-out infinite;
+      }
+
+      .glow-orb-1 {
+        animation: pulseGlow 5s ease-in-out infinite alternate;
+      }
+
+      .glow-orb-2 {
+        animation: pulseGlow 7s ease-in-out infinite alternate-reverse;
+      }
+
+      .reticle-corner {
+        animation: reticleFloat 3s ease-in-out infinite;
+      }
+    </style>
+  </defs>
+
+  <!-- 1. Background Fill -->
+  <rect width="1200" height="360" rx="16" fill="url(#bgGrad)"/>
+  <rect width="1200" height="360" rx="16" fill="url(#gridPattern)"/>
+
+  <!-- 2. Ambient Glow Orbs in Background -->
+  <circle class="glow-orb-1" cx="200" cy="100" r="160" fill="#0369a1" fill-opacity="0.25" filter="url(#softGlow)"/>
+  <circle class="glow-orb-2" cx="1020" cy="180" r="180" fill="#4f46e5" fill-opacity="0.22" filter="url(#softGlow)"/>
+
+  <!-- 3. Outer Border Stroke -->
+  <rect width="1198" height="358" x="1" y="1" rx="15" fill="none" stroke="#334155" stroke-width="1.2" stroke-opacity="0.8"/>
+
+  <!-- ================= DYNAMIC ILLUSTRATION (Right side) ================= -->
+  <g transform="translate(860, 50)">
+    <!-- Mobile Phone Silhouette Base -->
+    <rect x="0" y="0" width="250" height="260" rx="28" fill="#0b1329" stroke="#334155" stroke-width="2" />
+    <!-- Screen Area -->
+    <rect x="12" y="14" width="226" height="232" rx="20" fill="#030712" stroke="#1e293b" stroke-width="1.2"/>
+
+    <!-- Document Inside Phone -->
+    <g transform="translate(33, 30)">
+      <!-- Document Paper Base with Shadow -->
+      <rect x="0" y="0" width="160" height="200" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1.2"/>
+      
+      <!-- OCR Simulated Document Lines -->
+      <line x1="20" y1="30" x2="140" y2="30" stroke="#64748b" stroke-width="3" stroke-linecap="round"/>
+      <line x1="20" y1="46" x2="110" y2="46" stroke="#475569" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="20" y1="62" x2="135" y2="62" stroke="#475569" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="20" y1="78" x2="125" y2="78" stroke="#475569" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="20" y1="94" x2="90" y2="94" stroke="#475569" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="20" y1="110" x2="140" y2="110" stroke="#475569" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="20" y1="126" x2="115" y2="126" stroke="#475569" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="20" y1="142" x2="130" y2="142" stroke="#475569" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="20" y1="158" x2="100" y2="158" stroke="#475569" stroke-width="2.5" stroke-linecap="round"/>
+
+      <!-- Document Target Reticles / 4 Corner Crops -->
+      <path class="reticle-corner" d="M 8 20 L 8 8 L 20 8" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+      <path class="reticle-corner" d="M 152 20 L 152 8 L 140 8" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+      <path class="reticle-corner" d="M 8 180 L 8 192 L 20 192" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+      <path class="reticle-corner" d="M 152 180 L 152 192 L 140 192" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+
+      <!-- Animated Scanning Beam -->
+      <g class="scanner-beam-group">
+        <!-- Laser trail upwards -->
+        <rect x="4" y="24" width="152" height="26" fill="url(#beamAreaGrad)" />
+        <!-- Sharp Laser Line with glow -->
+        <line x1="2" y1="50" x2="158" y2="50" stroke="url(#laserGrad)" stroke-width="3" filter="url(#laserGlow)"/>
+        <!-- Scanner Center Highlight Pulse Point -->
+        <circle cx="80" cy="50" r="3.5" fill="#ffffff" filter="url(#laserGlow)"/>
+      </g>
+    </g>
+
+    <!-- Camera Lens on Phone Notch -->
+    <circle cx="125" cy="8" r="3.5" fill="#334155"/>
+  </g>
+
+  <!-- ================= FOREGROUND HERO CONTENT (Left side) ================= -->
+  <!-- Top Category Tag -->
+  <g transform="translate(60, 48)">
+    <rect x="0" y="0" width="220" height="30" rx="15" fill="#1e293b" stroke="#38bdf8" stroke-opacity="0.4" stroke-width="1.2"/>
+    <circle cx="15" cy="15" r="4.5" fill="#38bdf8"/>
+    <text x="28" y="19.5" fill="#94a3b8" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" letter-spacing="1.2">CURATED ECOSYSTEM</text>
+  </g>
+
+  <!-- Main Title -->
+  <text x="60" y="125" fill="#ffffff" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800" letter-spacing="-0.5">
+    Awesome Mobile Document
+  </text>
+  <text x="60" y="168" fill="#38bdf8" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800" letter-spacing="-0.5">
+    Scanning App Ecosystem
+  </text>
+
+  <!-- Subtitle / Meta Description -->
+  <text x="60" y="210" fill="#94a3b8" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="400">
+    The Definitive Guide to SaaS &amp; Open-Source Scanners • Offline-First • On-Device OCR • Zero Cloud Leakage
+  </text>
+
+  <!-- Feature Pills / Badges in Foreground -->
+  <g transform="translate(60, 245)">
+    <!-- Pill 1: Android & iOS -->
+    <g transform="translate(0, 0)">
+      <rect width="138" height="36" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <text x="14" y="22.5" fill="#f8fafc" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">📱 iOS &amp; Android</text>
+    </g>
+
+    <!-- Pill 2: 100% Offline OCR -->
+    <g transform="translate(150, 0)">
+      <rect width="156" height="36" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <text x="14" y="22.5" fill="#f8fafc" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">🔒 On-Device OCR</text>
+    </g>
+
+    <!-- Pill 3: Auto Edge Detection -->
+    <g transform="translate(318, 0)">
+      <rect width="180" height="36" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <text x="14" y="22.5" fill="#f8fafc" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">⚡ Auto Edge Detection</text>
+    </g>
+
+    <!-- Pill 4: Privacy & Paperless -->
+    <g transform="translate(510, 0)">
+      <rect width="188" height="36" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <text x="14" y="22.5" fill="#f8fafc" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">🛡️ Paperless-ngx Ready</text>
+    </g>
+  </g>
+</svg>
