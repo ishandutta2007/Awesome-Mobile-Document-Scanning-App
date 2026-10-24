@@ -62,7 +62,7 @@ The following table provides a comprehensive overview of the leading commercial 
 
 ## 🔓 Open-Source GitHub Projects & Libraries
 
-Below is the curated selection of open-source mobile document scanning applications, developer SDKs, and camera plugins. Entries are sorted in **descending order by GitHub star count** (updated with live social star badges linking directly to each repository's stargazers page).
+Below is the curated selection of open-source mobile document scanning applications, developer SDKs, and camera plugins. Entries are sorted in **descending order by GitHub Stars_Count** (updated with live social Stars_Badges linking directly to each repository's stargazers page).
 
 1. ### 📱 **[OSS Document Scanner](https://github.com/ossappscollective/OSS-DocumentScanner)** [![Stars](https://img.shields.io/github/stars/ossappscollective/OSS-DocumentScanner?style=social&color=white)](https://github.com/ossappscollective/OSS-DocumentScanner/stargazers)
    - **Platform & License**: Android • Apache-2.0
@@ -219,7 +219,7 @@ Contributions are welcome and appreciated! To add a new mobile scanner applicati
 1. **Fork the repository** to your GitHub account.
 2. **Create a topic branch**: `git checkout -b add-scanner-name`.
 3. **Add or update the listing** in `README.md`:
-   - Follow the established formatting conventions and include factual details (license, platforms, pricing, and GitHub star badges).
+   - Follow the established formatting conventions and include factual details (license, platforms, pricing, and GitHub Stars_Badges).
    - Ensure open-source entries link to the repository and stargazers page.
 4. **Commit your changes**: `git commit -m "feat: add scanner-name to ecosystem"`.
 5. **Open a Pull Request** with a brief rationale and verification links.
